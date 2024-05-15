@@ -1,0 +1,30 @@
+<div id="loadingSpinnerConversion" class="loading-spinner text-center d-none">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Carregando...</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">Trade Tokens</div>
+  <form id="tradeForm">
+    <div class="mb-2 div-container">
+      <label for="inputToken" class="form-label">Input</label>
+      <select class="form-select" id="inputToken">
+        <option value="WETH">WETH</option>
+        <option value="USDC">USDC</option>
+      </select>
+    </div>
+    <div class="mb-2 div-container">
+      <label for="outputToken" class="form-label">Output</label>
+      <select class="form-select" id="outputToken">
+        <option value="USDC">USDC</option>
+        <option value="WETH">WETH</option>
+      </select>
+    </div>
+    <div class="mb-2 div-container">
+      <label for="inputAmount" class="form-label">Quantidade</label>
+      <input type="text" class="form-control" id="inputAmount" placeholder="Digite um valor">
+    </div>
+    <button type="submit" class="btn btn-primary">Executa Trade</button>
+  </form>
+</div>

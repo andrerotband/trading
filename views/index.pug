@@ -1,0 +1,68 @@
+doctype html
+html(lang='en' data-bs-theme='dark')
+  include includes/head.pug
+  body
+    .container-fluid.w-75.p-2
+      include includes/toolbar.pug
+          //  Toggle Switch for Theme Change
+          .progressBar-switch-wrapper
+            label.progressBar-switch(for='progressBarStop')
+              input#progressBarStop(type='checkbox' checked)
+              .slider.round
+            em Atualização automática
+      .row.my-2
+        .col-6
+          //  Conversão
+          .card
+            #loadingSpinnerConversion.loading-spinner.text-center.d-none
+              .spinner-border(role='status')
+                span.visually-hidden Carregando...
+            .card-header Conversão
+            .div-conversao-itens
+              label.form-label(for='inputPay') Você paga
+              .input-group
+                input.form-control.input-swap#inputPay(inputmode='decimal' type='text' pattern='^[0-9]*[.]?[0-9]*$' minlength='1' maxlength='15' value='1')
+                button.btn#btnInputPay(type='button') ETH
+            .col-auto.text-center
+              button#invertButton.btn.btn-lg ⇄
+            .mb-2.div-conversao-itens
+              label.form-label(for='inputReceive') Tu recebes
+              .input-group
+                input.form-control.input-swap#inputReceive(inputmode='decimal' type='text' pattern='^[0-9]*[.,]?[0-9]*$' placeholder='0' minlength='1' maxlength='15')
+                button.btn#btnInputReceive(type='button') USDC
+            .mb-2.div-conversao-itens.
+
+              Taxa (0,25%) Custo de Rede
+
+        .col-6
+          //  Saldo e Atividades
+          .card.p-3
+            #loadingSpinnerWallet.loading-spinner.text-center.d-none
+              .spinner-border(role='status')
+                span.visually-hidden Carregando...
+            .card-header Wallet
+            .div-conversao-itens.mb-2
+              label.form-label(for='walletAddress') Endereço
+              .input-group
+                input.form-control#walletAddress(disabled)
+            .d-flex.gap-3
+              .div-conversao-itens.mb-2
+                label.form-label(for='walletBalance') Saldo
+                .input-group
+                  input.form-control#walletBalance(disabled)
+              .div-conversao-itens.mb-2
+                label.form-label(for='walletTransactionCount') Número de Transações
+                .input-group
+                  input.form-control#walletTransactionCount(disabled)
+            .d-flex.gap-3
+              .d-block.btn-comprar
+                button.btn.w-100.h-100(type='button') Comprar
+              .d-block.btn-comprar
+                button.btn.w-100(type='button') Ver NFTs
+              button#connectWallet(type='button') Conectar à MetaMask
+      .progress(role='progressbar' aria-label='Animated striped' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100')
+        #progressBar.progress-bar.progress-bar-striped.bg-success.progress-bar-animated.
+
+
+    script(src='js/bootstrap.bundle.min.js')
+    script(src='js/main.js')

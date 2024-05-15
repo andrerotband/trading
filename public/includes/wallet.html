@@ -1,0 +1,33 @@
+<div id="loadingSpinnerWallet" class="loading-spinner text-center d-none">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Carregando...</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">Wallet</div>
+
+  <div class="div-container mb-2">
+    <label for="walletAddress" class="form-label">Endereço</label>
+    <input class="form-control" id="walletAddress" disabled>
+  </div>
+  <div class="d-flex gap-3">
+    <div class="div-container mb-2">
+      <label for="walletBalance" class="form-label">Saldo</label>
+      <input class="form-control" id="walletBalance" disabled>
+    </div>
+    <div class="div-container mb-2">
+      <label for="walletTransactionCount" class="form-label">Número de Transações</label>
+      <input class="form-control" id="walletTransactionCount" disabled>
+    </div>
+  </div>
+  <div class="d-flex gap-3">
+    <button type="button" class="btn w-100 h-100">Comprar</button>
+    <button type="button" class="btn w-100">Ver NFTs</button>
+    <button type="button" class="btn" id="connectWallet">Conectar à MetaMask</button>
+  </div>
+  <script>
+    if (typeof wallet === "undefined") {
+      const wallet = new Wallet();
+    }
+  </script>

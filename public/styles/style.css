@@ -1,0 +1,169 @@
+:root {
+  --primary: #FFF;
+  --secondary: #A9A9A9;
+  --interactive: #000;
+  --container: #4E4E5A;
+  --module: #222633;
+  --accent: #71FF98;
+  --outline: #CC1;
+  --dialog: #000;
+  --fontFamily: Josefin Sans;
+  --borderRadius: 0.5;
+
+
+  --primary-bg: #131313;
+  --secondary-bg: #2d2d2d;
+  --accent-color: #00ff99;
+  --text-color: #aaa;
+  --field-color: rgb(27, 27, 27);
+  --button-hover-bg: #017D73;
+  --spacer: 1rem;
+}
+
+body {
+  /* background-color: var(--primary-bg); */
+  /* color: var(--text-color); */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar {
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.nav-link {
+  margin-right: 10px;
+  color: #fff;
+}
+
+.btn {
+  background-color: var(--secondary-bg);
+  color: var(--text-color);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: var(--button-hover-bg);
+  color: #fff;
+}
+
+.form-control,
+.form-control:disabled {
+  background-color: var(--field-color);
+  color: var(--text-color);
+  border: none;
+  max-height: 50px;
+}
+
+.card {
+  background-color: var(--primary-bg);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  color: #ffffff;
+  height: 100%;
+}
+
+.card-header {
+  font-size: 1.50rem;
+  color: var(--accent-color);
+  text-align: center;
+  margin-bottom: var(--spacer);
+}
+
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.spinner-border {
+  width: 5rem;
+  height: 5rem;
+}
+
+.div-container {
+  background-color: var(--field-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  color: var(--text-color);
+  font-size: 13px;
+  font-weight: 500;
+  height: 100px;
+  padding-inline: 16px;
+  align-content: center;
+}
+
+
+
+.coin-label {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#btnInputPay,
+#btnInputReceive,
+#btnRefresh {
+  border-radius: 20px;
+  width: 130px;
+  margin-top: -20px;
+}
+
+
+.input-swap {
+  font-size: 36px;
+  font-weight: 485;
+}
+
+#invertButton {
+  position: absolute;
+  font-size: 20px;
+  transform: rotate(90deg) translate(-50%, 50%);
+}
+
+#invertButton:hover {
+  color: #ccc;
+}
+
+@keyframes borderFade {
+
+  0%,
+  100% {
+    border-color: rgba(0, 255, 153, 0);
+  }
+
+  50% {
+    border-color: rgba(0, 255, 153, 1);
+  }
+
+}
+
+.flash-border {
+  animation: borderFade 2s;
+  border: 1px solid transparent;
+}
+
+#walletBalance,
+#walletTransactionCount {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.dynamic-content {
+  height: 450px;
+  width: 50%;
+}
+
+.container-dynamic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  margin: 0;
+}
