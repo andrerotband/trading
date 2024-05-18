@@ -3,7 +3,6 @@ const router = express.Router();
 const { WalletInfo } = require('../src/myWallet');
 const walletInfo = new WalletInfo();
 const { getPrice } = require('../src/quotes');
-const { executeTrade } = require('../src/trade');
 
 router.use((err, req, res, next) => {
   console.error(err.stack, next);
@@ -45,12 +44,15 @@ router.post('/quotes', async (req, res) => {
 });
 
 router.post('/trade', async (req, res) => {
-  //  try {
-  const price = await executeTrade(req.body);
-  res.json(price);
-  //  } catch (error) {
-  //    res.status(500).json({ error: error.message });
-  // }
+  const { inputToken, outputToken, amount } = req.body;
+  try {
+    const { executeTrade } = require('../src/trade');
+    const result = await executeTrade({ inputToken, outputToken, amount });
+    res.json(result);
+  } catch (error) {
+    console.error('Erro executando trade:', error);
+    res.status(500).json({ error: 'Erro executando trade' });
+  }
 });
 
 
