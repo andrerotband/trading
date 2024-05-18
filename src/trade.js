@@ -11,7 +11,7 @@ async function executeTrade(inputParams) {
 
     // Verificar saldo da carteira
     const balance = await provider.getBalance(wallet.address);
-    if (balance > amountIn) {
+    if (balance < amountIn) {
       return {
         status: 'error',
         error: 'Saldo insuficiente para transação: ' + `${ethers.formatEther(balance)} ETH`,
