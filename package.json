@@ -19,7 +19,9 @@
     "http-errors": "^2.0.0",
     "jsbi": "^4.3.0",
     "morgan": "^1.10.0",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "sanitize-filename": "^1.6.3",
+    "sanitize-html": "^2.13.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.3.0",
