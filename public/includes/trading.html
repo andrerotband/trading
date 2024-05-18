@@ -1,30 +1,45 @@
-<div id="loadingSpinnerConversion" class="loading-spinner text-center d-none">
+<div id="loadingSpinnerTrading" class="loading-spinner text-center d-none">
   <div class="spinner-border" role="status">
     <span class="visually-hidden">Carregando...</span>
   </div>
 </div>
 
-<div class="card">
-  <div class="card-header">Trade Tokens</div>
-  <form id="tradeForm">
-    <div class="mb-2 div-container">
-      <label for="inputToken" class="form-label">Input</label>
-      <select class="form-select" id="inputToken">
-        <option value="WETH">WETH</option>
-        <option value="USDC">USDC</option>
-      </select>
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header">Trade Tokens</div>
+    <form id="tradeForm">
+      <div class="d-flex gap-2 mb-2">
+        <div class="div-container">
+          <label for="inputToken" class="form-label">Input</label>
+          <select class="form-select" id="inputToken">
+            <option value="WETH">WETH</option>
+            <option value="USDC">USDC</option>
+          </select>
+        </div>
+        <div class="div-container">
+          <label for="outputToken" class="form-label">Output</label>
+          <select class="form-select" id="outputToken">
+            <option value="USDC">USDC</option>
+            <option value="WETH">WETH</option>
+          </select>
+        </div>
+        <div class="div-container">
+          <label for="inputAmount" class="form-label">Quantidade</label>
+          <input type="text" class="form-control" id="inputAmount" placeholder="Digite um valor">
+        </div>
+      </div>
+      <div class="d-flex">
+        <button type="button" class="btn btn-primary w-100" id="btnExecuteTrade">Executa Trade</button>
+      </div>
+    </form>
+    <div class="div-container">
+      <label for="tradeResult" class="form-label">Resultado</label>
+      <textarea class="form-control" id="tradeResult"></textarea>
     </div>
-    <div class="mb-2 div-container">
-      <label for="outputToken" class="form-label">Output</label>
-      <select class="form-select" id="outputToken">
-        <option value="USDC">USDC</option>
-        <option value="WETH">WETH</option>
-      </select>
-    </div>
-    <div class="mb-2 div-container">
-      <label for="inputAmount" class="form-label">Quantidade</label>
-      <input type="text" class="form-control" id="inputAmount" placeholder="Digite um valor">
-    </div>
-    <button type="submit" class="btn btn-primary">Executa Trade</button>
-  </form>
+  </div>
 </div>
+<script>
+  if (typeof trading === "undefined") {
+    const trading = new Trading();
+  }
+</script>

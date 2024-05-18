@@ -25,7 +25,7 @@ async function getPrice(inputParams) {
     // console.log('Price Per Token:', adjustedPricePerToken);
     // console.log('Estimated Amount in Output Token:', finalPrice);
 
-    return finalPrice.toFixed(3)
+    return finalPrice.toFixed(8)
   } catch (error) {
     console.error("Error calculating price:", error);
     throw error;

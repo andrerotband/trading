@@ -5,7 +5,7 @@ class Dashboard {
   }
 
   initElements() {
-    const ids = ['dynamicContent', 'themeToggle', 'menuConversion', 'menuWallet', 'menuTrading'];
+    const ids = ['dynamicContent', 'themeToggle', 'menuConversion', 'menuWallet', 'menuTrading', 'menuAbout'];
     this.elements = ids.reduce((acc, id) => {
       acc[id] = document.getElementById(id);
       return acc;
@@ -13,7 +13,7 @@ class Dashboard {
   }
 
   setupListeners() {
-    ['menuConversion', 'menuWallet', 'menuTrading'].forEach(menuId => {
+    ['menuConversion', 'menuWallet', 'menuTrading', 'menuAbout'].forEach(menuId => {
       const element = this.elements[menuId];
       if (element) {
         element.addEventListener('click', async () => {
@@ -30,8 +30,7 @@ class Dashboard {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const html = await response.text();
-      this.elements.dynamicContent.innerHTML = html;
-      this.cleanDynamicContent(); // Cleanup before inserting new content
+      this.cleanDynamicContent();
       this.sanitizeAndInsertHTML(html, this.elements.dynamicContent);
       this.refreshScripts();
     } catch (error) {

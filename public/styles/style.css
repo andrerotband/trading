@@ -156,7 +156,7 @@ body {
 }
 
 .dynamic-content {
-  height: 450px;
+  height: 500px;
   width: 50%;
 }
 
@@ -166,4 +166,8 @@ body {
   align-items: center;
   height: 90vh;
   margin: 0;
+}
+
+#tradeForm {
+  align-content: space-between;
 }
