@@ -1,40 +1,19 @@
-Hi Andre,
-I hope this message finds you well!
+# Uniswap V3 Trading Bot
 
-Thank you for your interest in working as a Senior Developer position at Crowdform.
+Este projeto é um bot de negociação automatizado que realiza trocas de tokens na Uniswap V3. Ele é construído com Node.js e TypeScript, utilizando as bibliotecas `ethers`, `@uniswap/v3-sdk` e `@uniswap/sdk-core`.
 
-As part of our recruitment process, please see the instructions for the next stage below:
+## Funcionalidades
 
-Code Challenge
+- Conversão
+- Realiza trocas de tokens na Uniswap V3.
+- Suporta trocas entre ETH (WETH) e USDC.
+- Configurável para diferentes quantidades e tokens.
 
-Task
-- Create a working trade using Uniswap on the BASE chain
-- See docs https://docs.uniswap.org/sdk/v3/guides/swaps/trading
-- RPC - https://mainnet.base.org
-- Blockchain - https://basescan.org
-- Swap BASE ETH ➝ USDC
-- Budget is $10 allow to be expensed if completed working for test ETH
-- Using Typescript, NodeJS follow code your preferred code standard
+## Pré-requisitos
 
-Time
-- As soon as submitted will be review in 24hours
-- No submission past 4 days of staring
-
-Submission
-- Share on Github or a Code Sandbox a working example for review
-- Share video of trade working
-- Submit to luciana@crowdform.studio
-
-Next step
-- Interview
-
-Please review it carefully. I'll be looking forward to receiving your task!
-
-Best wishes,
-Luciana
+- Node.js (versão 14 ou superior)
+- npm (versão 6 ou superior)
+- Conta na Infura para obter um `PROJECT_ID`
+- Uma chave privada Ethereum com saldo suficiente para realizar transações
 
 
-
-MetaMask:
-
-summer million they evoke cheese real base network spare coffee melody deny
