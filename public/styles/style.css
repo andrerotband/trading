@@ -56,7 +56,7 @@ body {
   background-color: var(--field-color);
   color: var(--text-color);
   border: none;
-  max-height: 50px;
+  /* max-height: 50px; */
 }
 
 .card {
@@ -157,14 +157,14 @@ body {
 
 .dynamic-content {
   height: 500px;
-  width: 50%;
+  width: 75%;
 }
 
 .container-dynamic {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 80vh;
   margin: 0;
 }
 
