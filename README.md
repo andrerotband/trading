@@ -1,6 +1,6 @@
 # CryptoDash
 
-Este projeto é um bot de negociação automatizado que realiza trocas de tokens na Uniswap V3. Ele é construído com Node.js com Express, utilizando as bibliotecas `ethers`, `@uniswap/v3-sdk` e `@uniswap/sdk-core`.
+Este projeto é um bot de negociação automatizado que realiza trocas de tokens na Uniswap V3. Ele é construído com Node.js e Express, utilizando as bibliotecas `ethers`, `@uniswap/v3-sdk` e `@uniswap/sdk-core`.
 
 ## Funcionalidades
 
