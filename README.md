@@ -11,8 +11,9 @@ Este projeto é um bot de negociação automatizado que realiza trocas de tokens
 
 ## Pré-requisitos
 
-- Node.js (versão 14 ou superior)
-- npm (versão 6 ou superior)
+- Node.js (versão 18 ou superior)
+- Express
+- npm (versão 10 ou superior)
 - Conta na Infura para obter um `PROJECT_ID`
 - Uma chave privada Ethereum com saldo suficiente para realizar transações
 
