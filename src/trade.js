@@ -1,11 +1,14 @@
 const { ethers } = require('ethers');
 const { WETH, USDC } = require('./libs/tokens');
-const { wallet, provider, MAX_FEE_PER_GAS, MAX_PRIORITY_FEE_PER_GAS } = require('./libs/config');
+const { wallet, provider, MAX_FEE_PER_GAS, MAX_PRIORITY_FEE_PER_GAS,
+  swapRouterAddress, ISwapRouterABI } = require('./libs/config');
 const { getPoolData } = require('./libs/poolUtils');
+
+const myFee = 3000;
 
 async function executeTrade(inputParams) {
   try {
-    const amountIn = ethers.parseUnits(inputParams.amount, 18); // Assume que amount é uma string representando a quantidade de ETH
+    const amountIn = ethers.parseUnits(inputParams.amount, 18);
     const inputToken = inputParams.inputToken === 'WETH' ? WETH : USDC;
     const outputToken = inputParams.outputToken === 'USDC' ? USDC : WETH;
 
@@ -14,32 +17,26 @@ async function executeTrade(inputParams) {
     if (balance < amountIn) {
       return {
         status: 'error',
-        error: 'Saldo insuficiente para transação: ' + `${ethers.formatEther(balance)} ETH`,
+        errorMsg: `Saldo insuficiente para transação: ${ethers.formatEther(balance)} ETH`,
       };
     }
 
-    const pool = await getPoolData(inputToken, outputToken, 3000);
+    const pool = await getPoolData(inputToken, outputToken, myFee);
     if (!pool) {
       return {
         status: 'error',
-        error: 'Informações do Pool não encontrados',
+        errorMsg: 'Informações do Pool não encontrados',
       };
     }
 
     const amountOutMin = amountIn;
     const deadline = Math.floor(Date.now() / 1000) + 60 * 20; // 20 minutes from the current time
-
-    const swapRouterAddress = '0xE592427A0AEce92De3Edee1F18E0157C05861564'; // Uniswap V3 SwapRouter address on Ethereum mainnet
-    const ISwapRouterABI = [
-      'function exactInputSingle(tuple(address tokenIn, address tokenOut, uint24 fee, address recipient, uint256 amountIn, uint256 amountOutMinimum, uint160 sqrtPriceLimitX96) params) external payable returns (uint256 amountOut)'
-    ];
-
     const swapRouterContract = new ethers.Contract(swapRouterAddress, ISwapRouterABI, wallet);
 
     const params = {
       tokenIn: inputToken.address,
       tokenOut: outputToken.address,
-      fee: 3000,
+      fee: myFee,
       recipient: wallet.address,
       deadline: deadline,
       amountIn: amountIn.toString(),
@@ -55,16 +52,21 @@ async function executeTrade(inputParams) {
       ], wallet);
 
       const allowance = await tokenContract.allowance(wallet.address, swapRouterAddress);
-      console.log(`Current allowance: ${allowance.toString()}`);
-
-      if (allowance.lt(amountIn)) {
-        console.log('Approving token...');
+      if (allowance < amountIn) {
         const approveTx = await tokenContract.approve(swapRouterAddress, amountIn);
-        await approveTx.wait();
-        console.log('Token approved');
+        const receipt = await approveTx.wait();
+
+        // Verificar se a transação de aprovação foi bem-sucedida
+        if (receipt.status === 0) {
+          return {
+            status: 'error',
+            errorMsg: 'Falha ao aprovar o token de entrada.',
+          };
+        }
       }
     }
 
+    // Cria transação de swap
     const transaction = {
       data: swapRouterContract.interface.encodeFunctionData('exactInputSingle', [params]),
       to: swapRouterAddress,
@@ -74,12 +76,10 @@ async function executeTrade(inputParams) {
       maxPriorityFeePerGas: MAX_PRIORITY_FEE_PER_GAS,
     };
 
-    // Criar a transação de swap
     const tx = await wallet.sendTransaction(transaction);
-
-    console.log(`Transaction hash: ${tx.hash}`);
     const receipt = await tx.wait();
-    console.log(`Transaction confirmed in block ${receipt.blockNumber}`);
+
+    console.log(`Transaction hash: ${tx.hash} confirmed in block ${receipt.blockNumber}`);
 
     return {
       status: 'success',
@@ -87,11 +87,11 @@ async function executeTrade(inputParams) {
       blockNumber: receipt.blockNumber,
     };
   } catch (error) {
-    console.error('Error executing trade:', error.message);
+    console.error('Error executing trade:', error.info.error);
 
     return {
       status: 'error',
-      error: error.message,
+      errorMsg: error.info.error,
     };
   }
 }
