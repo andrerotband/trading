@@ -1,11 +1,11 @@
 class Dashboard {
-  constructor () {
+  constructor() {
     this.initElements();
     this.setupListeners();
   }
 
   initElements() {
-    const ids = ['dynamicContent', 'themeToggle', 'menuConversion', 'menuWallet', 'menuTrading', 'menuAbout'];
+    const ids = ['dynamicContent', 'themeToggle', 'menuConversion', 'menuWallet', 'menuTrade', 'menuAbout'];
     this.elements = ids.reduce((acc, id) => {
       acc[id] = document.getElementById(id);
       return acc;
@@ -13,11 +13,11 @@ class Dashboard {
   }
 
   setupListeners() {
-    ['menuConversion', 'menuWallet', 'menuTrading', 'menuAbout'].forEach(menuId => {
+    ['menuConversion', 'menuWallet', 'menuTrade', 'menuAbout'].forEach(menuId => {
       const element = this.elements[menuId];
       if (element) {
         element.addEventListener('click', async () => {
-          await this.loadDynamicContent(`includes/${menuId.substring(4).toLowerCase()}.html`);
+          await this.loadDynamicContent(`includes/view${menuId.substring(4)}.html`);
         });
       }
     });

@@ -1,0 +1,45 @@
+<div id="loadingSpinnerTrade" class="loading-spinner text-center d-none">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Carregando...</span>
+  </div>
+</div>
+
+<div class="container-fluid h-100">
+  <div class="card">
+    <div class="card-header">Trade Tokens</div>
+    <form id="tradeForm">
+      <div class="d-flex gap-2 mb-2">
+        <div class="div-container w-100">
+          <label for="inputToken" class="form-label">Input</label>
+          <select class="form-select" id="inputToken">
+            <option value="WETH">WETH</option>
+            <option value="USDC">USDC</option>
+          </select>
+        </div>
+        <div class="div-container w-100">
+          <label for="outputToken" class="form-label">Output</label>
+          <select class="form-select" id="outputToken">
+            <option value="USDC">USDC</option>
+            <option value="WETH">WETH</option>
+          </select>
+        </div>
+        <div class="div-container w-100">
+          <label for="inputAmount" class="form-label">Quantidade</label>
+          <input type="text" class="form-control" id="inputAmount" placeholder="Digite um valor">
+        </div>
+      </div>
+      <div class="d-flex">
+        <button type="button" class="btn btn-primary w-100" id="btnExecuteTrade">Executa Trade</button>
+      </div>
+    </form>
+    <div class="div-container h-100">
+      <label for="tradeResult" class="form-label">Resultado</label>
+      <textarea class="form-control h-75" id="tradeResult" rows="5"></textarea>
+    </div>
+  </div>
+</div>
+<script>
+  if (typeof trade === "undefined") {
+    const trade = new ViewTrade();
+  }
+</script>
